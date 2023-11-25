@@ -22,6 +22,29 @@ class Channel:
         self.video_count = channel['items'][0]['statistics']['videoCount']
         self.total_number_views = channel['items'][0]['statistics']['viewCount']
 
+    def __str__(self):
+        return f"'{self.title} ({self.url})'"
+
+    def __add__(self, other):
+        """Магический метод сложения"""
+        return int(self.number_of_subscribers) + int(other.number_of_subscribers)
+
+    def __sub__(self, other):
+        """Магический метод вычитания"""
+        return int(self.number_of_subscribers) - int(other.number_of_subscribers)
+
+    def __eq__(self, other):
+        """Магический метод сравнение равны ли"""
+        return int(self.number_of_subscribers) == int(other.number_of_subscribers)
+
+    def __lt__(self, other):
+        """Магический метод сравнение меньше ли(больше ли)"""
+        return int(self.number_of_subscribers) < int(other.number_of_subscribers)
+
+    def __le__(self, other):
+        """Магический метод сравнение меньше ли(больше ли)"""
+        return int(self.number_of_subscribers) <= int(other.number_of_subscribers)
+
     @property
     def channel_id(self):
         return self.__channel_id
